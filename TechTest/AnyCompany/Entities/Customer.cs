@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AnyCompany
+namespace AnyCompany.Entities
 {
     public class Customer
     {

@@ -1,4 +1,4 @@
-﻿namespace AnyCompany
+﻿namespace AnyCompany.Entities
 {
     public class Order
     {
