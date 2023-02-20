@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace AnyCompany.Repositories
 {
-    internal class OrderRepository
+    public class OrderRepository
     {
         private static string ConnectionString = @"Data Source=(local);Database=Orders;User Id=admin;Password=password;";
 
