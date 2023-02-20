@@ -1,34 +1,24 @@
-﻿using AnyCompany.Entities;
-using System;
-using System.Data.SqlClient;
+﻿using AnyCompany.Configurations;
+using AnyCompany.Entities;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AnyCompany.Repositories
 {
     public static class CustomerRepository
     {
-        private static string ConnectionString = @"Data Source=(local);Database=Customers;User Id=admin;Password=password;";
+        public static async Task<Customer> GetAsync(int customerId, AnyCompanyDbContext context)
+            => await context
+            .Customers
+            .Include(c => c.Orders)
+            .FirstOrDefaultAsync(a => a.CustomerId == customerId);
 
-        public static Customer Load(int customerId)
-        {
-            Customer customer = new Customer();
-
-            SqlConnection connection = new SqlConnection(ConnectionString);
-            connection.Open();
-
-            SqlCommand command = new SqlCommand("SELECT * FROM Customer WHERE CustomerId = " + customerId,
-                connection);
-            var reader = command.ExecuteReader();
-
-            while (reader.Read())
-            {
-                customer.Name = reader["Name"].ToString();
-                customer.DateOfBirth = DateTime.Parse(reader["DateOfBirth"].ToString());
-                customer.Country = reader["Country"].ToString();
-            }
-
-            connection.Close();
-
-            return customer;
-        }
+        public static async Task<IEnumerable<Customer>> GetAsync(AnyCompanyDbContext context)
+            => await context
+            .Customers
+            .OrderBy(a => a.CustomerId)
+            .ToListAsync();
     }
 }

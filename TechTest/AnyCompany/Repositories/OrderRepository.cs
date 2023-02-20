@@ -1,26 +1,25 @@
-﻿using AnyCompany.Entities;
-using System.Data.SqlClient;
+﻿using AnyCompany.Configurations;
+using AnyCompany.Entities;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AnyCompany.Repositories
 {
-    public class OrderRepository
+    public static class OrderRepository
     {
-        private static string ConnectionString = @"Data Source=(local);Database=Orders;User Id=admin;Password=password;";
-
-        public void Save(Order order)
+        public static async Task CreateAsync(Order order, AnyCompanyDbContext context)
         {
-            SqlConnection connection = new SqlConnection(ConnectionString);
-            connection.Open();
-
-            SqlCommand command = new SqlCommand("INSERT INTO Orders VALUES (@OrderId, @Amount, @VAT)", connection);
-
-            command.Parameters.AddWithValue("@OrderId", order.OrderId);
-            command.Parameters.AddWithValue("@Amount", order.Amount);
-            command.Parameters.AddWithValue("@VAT", order.VAT);
-
-            command.ExecuteNonQuery();
-
-            connection.Close();
+            context.Orders.Add(order);
+            await context.SaveChangesAsync();
         }
+
+        public static async Task<IEnumerable<Order>> GetByCustomerIdAsync(int customerId, AnyCompanyDbContext context)
+            => await context
+            .Orders
+            .Where(o => o.CustomerId == customerId)
+            .Include(o => o.Customer)
+            .ToListAsync();
     }
 }

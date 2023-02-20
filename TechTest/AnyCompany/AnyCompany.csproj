@@ -58,6 +58,8 @@
     <Compile Include="DTOs\CustomerDTO.cs" />
     <Compile Include="DTOs\OrderDTO.cs" />
     <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Interfaces\ICustomerService.cs" />
+    <Compile Include="Interfaces\IOrderService.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
