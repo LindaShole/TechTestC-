@@ -59,6 +59,8 @@ namespace AnyCompany.Services
                 if (customer == null)
                     throw new Exception("Cutomer not found");
 
+                entity.Customer = customer;
+
                 entity.VAT = CalculateVAT(_mapper.Map<CustomerDTO>(customer));
 
                 await OrderRepository.CreateAsync(entity, _context);
