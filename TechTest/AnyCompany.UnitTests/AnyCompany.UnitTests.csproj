@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2D138EBA-7844-41C1-8F81-5FEFCAA72295}</ProjectGuid>
+    <ProjectGuid>{C4E4A17F-E957-4276-A5C9-A53FB0E73165}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AnyCompany.Tests</RootNamespace>
-    <AssemblyName>AnyCompany.Tests</AssemblyName>
+    <RootNamespace>AnyCompany.UnitTests</RootNamespace>
+    <AssemblyName>AnyCompany.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -49,7 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OrderServiceTest.cs" />
+    <Compile Include="OrderServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AnyCompany\AnyCompany.csproj">
-      <Project>{c7e15594-7d8f-4c18-9dd7-14f3fbb1572d}</Project>
+      <Project>{C7E15594-7D8F-4C18-9DD7-14F3FBB1572D}</Project>
       <Name>AnyCompany</Name>
     </ProjectReference>
   </ItemGroup>
