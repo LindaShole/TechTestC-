@@ -36,6 +36,7 @@ namespace AnyCompany
             }
             catch(Exception ex)
             {
+                //Log Exception
                 return new Customer();
             }
 
