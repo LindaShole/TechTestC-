@@ -1,12 +1,17 @@
-﻿using System.Data.SqlClient;
+﻿using AnyCompany.IRepository;
+using System.Data.SqlClient;
+using AnyCompany.Contracts;
+using System.Configuration;
 
 namespace AnyCompany
 {
-    internal class OrderRepository
+    internal class OrderRepository : IOrderRepository
     {
-        private static string ConnectionString = @"Data Source=(local);Database=Orders;User Id=admin;Password=password;";
+        //private static string ConnectionString = @"Data Source=(local);Database=Orders;User Id=admin;Password=password;";
 
-        public void Save(Order order)
+        private static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["ConnStr"].ToString();
+
+        public void Save(IOrder order)
         {
             SqlConnection connection = new SqlConnection(ConnectionString);
             connection.Open();

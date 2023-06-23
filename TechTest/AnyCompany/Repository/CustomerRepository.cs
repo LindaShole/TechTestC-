@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Configuration;
 using System.Data.SqlClient;
 
 namespace AnyCompany
 {
     public static class CustomerRepository
     {
-        private static string ConnectionString = @"Data Source=(local);Database=Customers;User Id=admin;Password=password;";
+        //private static string ConnectionString = @"Data Source=(local);Database=Customers;User Id=admin;Password=password;";
+
+        private static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["ConnStr"].ToString();
 
         public static Customer Load(int customerId)
         {
@@ -14,8 +17,7 @@ namespace AnyCompany
             SqlConnection connection = new SqlConnection(ConnectionString);
             connection.Open();
 
-            SqlCommand command = new SqlCommand("SELECT * FROM Customer WHERE CustomerId = " + customerId,
-                connection);
+            SqlCommand command = new SqlCommand("SELECT * FROM Customer WHERE CustomerId = " + customerId,connection);
             var reader = command.ExecuteReader();
 
             while (reader.Read())
