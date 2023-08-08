@@ -1,0 +1,17 @@
+﻿Use [Orders]
+Go
+
+IF OBJECT_ID(N'dbo.Order') IS NOT NULL
+BEGIN
+	DROP TABLE [dbo].[Order]
+END
+GO
+
+CREATE TABLE [dbo].[Order]
+(
+  OrderId INT IDENTITY NOT NULL PRIMARY KEY,
+  CustomerId INT NOT NULL,
+  Amount DECIMAL(10,2) NOT NULL,
+  VAT DECIMAL(10,2) NOT NULL
+) 
+
