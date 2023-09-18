@@ -9,25 +9,45 @@ namespace AnyCompany
 
         public static Customer Load(int customerId)
         {
-            Customer customer = new Customer();
 
-            SqlConnection connection = new SqlConnection(ConnectionString);
-            connection.Open();
+            try{
 
-            SqlCommand command = new SqlCommand("SELECT * FROM Customer WHERE CustomerId = " + customerId,
-                connection);
-            var reader = command.ExecuteReader();
+                    Customer customer = new Customer();
 
-            while (reader.Read())
-            {
-                customer.Name = reader["Name"].ToString();
-                customer.DateOfBirth = DateTime.Parse(reader["DateOfBirth"].ToString());
-                customer.Country = reader["Country"].ToString();
-            }
+                    using(SqlConnection connection = new SqlConnection(ConnectionString))
+                    {
+                        connection.Open();
+                        //Perform database operation
+                         SqlCommand command = new SqlCommand("SELECT * FROM Customer WHERE CustomerId = " + customerId,
+                        connection);
 
-            connection.Close();
+                        var reader = command.ExecuteReader();
 
-            return customer;
+                        while (reader.Read())
+                        {
+                            customer.Name = reader["Name"].ToString();
+                            customer.DateOfBirth = DateTime.Parse(reader["DateOfBirth"].ToString());
+                            customer.Country = reader["Country"].ToString();
+                        }
+
+
+                    }
+
+                    return customer;
+
+                }
+                catch (SqlException ex)
+                {
+                // Handle SQL exceptions
+                Console.WriteLine(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    // Handle other exceptions
+                    Console.WriteLine(ex.Message);
+                }
+
+                    
         }
     }
 }
