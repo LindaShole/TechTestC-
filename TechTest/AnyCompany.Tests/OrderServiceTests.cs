@@ -138,8 +138,11 @@ namespace AnyCompany.Tests
             var customersAfterLink = _customerRepositoryWrapper.GetAllCustomers();
             var customerWithOrder = customersAfterLink.FirstOrDefault(x => x.CustomerId == insertedCustomer.CustomerId);
 
-            Assert.IsNotNull(customerWithOrder.Orders);
-            Assert.IsTrue(customerWithOrder.Orders.Count > 0);
+            Assert.IsNotNull(customerWithOrder.Orders.FirstOrDefault());
+            Assert.IsTrue(customerWithOrder.Orders.FirstOrDefault().CustomerId > 0);
+
+            //Recently added customer has no orders
+            Assert.IsTrue(insertedCustomer.Orders.FirstOrDefault().CustomerId == 0);
 
         }
 
