@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C7E15594-7D8F-4C18-9DD7-14F3FBB1572D}</ProjectGuid>
+    <ProjectGuid>{71AAB0FA-7D35-47D5-9BC5-B51EB5FA1BE5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AnyCompany</RootNamespace>
-    <AssemblyName>AnyCompany</AssemblyName>
+    <RootNamespace>AnyCompany.Entities</RootNamespace>
+    <AssemblyName>AnyCompany.Entities</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,20 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Repositories\CustomerRepository.cs" />
-    <Compile Include="Services\CustomerService.cs" />
-    <Compile Include="Repositories\OrderRepository.cs" />
-    <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Customer.cs" />
+    <Compile Include="Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AnyCompany.Entities\AnyCompany.Entities.csproj">
-      <Project>{71aab0fa-7d35-47d5-9bc5-b51eb5fa1be5}</Project>
-      <Name>AnyCompany.Entities</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
